@@ -11,7 +11,9 @@
     <url>http://www.nepxion.com</url>
 
     <modules>
-        <module>discovery-contrib-plugin</module>
+        <module>discovery-contrib-plugin-starter</module>
+        <module>discovery-contrib-plugin-starter-rocketmq</module>
+        <module>discovery-contrib-plugin-starter-shardingsphere</module>
         <module>discovery-contrib-example</module>
     </modules>
 
