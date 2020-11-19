@@ -11,9 +11,9 @@ package com.nepxion.discovery.contrib.plugin.matcher;
 
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.nepxion.discovery.common.constant.DiscoveryConstant;
 import com.nepxion.discovery.common.util.StringUtil;
 import com.nepxion.discovery.plugin.framework.adapter.PluginAdapter;
 import com.nepxion.discovery.plugin.strategy.matcher.DiscoveryMatcherStrategy;
@@ -27,7 +27,11 @@ public class ContribMatcher {
 
     public boolean match(String targetValues, String value) {
         // 如果精确匹配不满足，尝试用通配符匹配
-        List<String> targetValueList = StringUtil.splitToList(targetValues, DiscoveryConstant.SEPARATE);
+        List<String> targetValueList = StringUtil.splitToList(targetValues);
+        if (CollectionUtils.isEmpty(targetValueList)) {
+            return false;
+        }
+
         if (targetValueList.contains(value)) {
             return true;
         }
@@ -44,7 +48,11 @@ public class ContribMatcher {
 
     public boolean matchAddress(String addresses) {
         // 如果精确匹配不满足，尝试用通配符匹配
-        List<String> addressList = StringUtil.splitToList(addresses, DiscoveryConstant.SEPARATE);
+        List<String> addressList = StringUtil.splitToList(addresses);
+        if (CollectionUtils.isEmpty(addressList)) {
+            return false;
+        }
+
         if (addressList.contains(pluginAdapter.getHost() + ":" + pluginAdapter.getPort()) || addressList.contains(pluginAdapter.getHost()) || addressList.contains(String.valueOf(pluginAdapter.getPort()))) {
             return true;
         }
