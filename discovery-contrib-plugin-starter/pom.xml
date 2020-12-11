@@ -5,7 +5,7 @@
     <name>Nepxion Discovery Contrib Plugin Starter</name>
     <packaging>jar</packaging>
     <modelVersion>4.0.0</modelVersion>
-    <description>Nepxion Discovery Contrib is 3rd-party contributions that use Nepxion Discovery</description>
+    <description>Nepxion Discovery Contrib is 3rd-party such as Database, Queue Message contributions that use Nepxion Discovery</description>
     <url>http://www.nepxion.com</url>
 
     <parent>
