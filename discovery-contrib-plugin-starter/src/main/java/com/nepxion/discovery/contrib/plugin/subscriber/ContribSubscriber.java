@@ -1,24 +1,5 @@
 package com.nepxion.discovery.contrib.plugin.subscriber;
 
-/**
- * <p>Title: Nepxion Discovery</p>
- * <p>Description: Nepxion Discovery</p>
- * <p>Copyright: Copyright (c) 2017-2050</p>
- * <p>Company: Nepxion</p>
- * @author Haojun Ren
- * @version 1.0
- */
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.google.common.eventbus.Subscribe;
 import com.nepxion.discovery.common.entity.ParameterEntity;
 import com.nepxion.discovery.common.entity.ParameterServiceEntity;
@@ -30,9 +11,19 @@ import com.nepxion.discovery.contrib.plugin.processor.ContribProcessor;
 import com.nepxion.discovery.plugin.framework.adapter.PluginAdapter;
 import com.nepxion.discovery.plugin.framework.event.ParameterChangedEvent;
 import com.nepxion.eventbus.annotation.EventBus;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @EventBus
 public class ContribSubscriber {
+
     private static final Logger LOG = LoggerFactory.getLogger(ContribSubscriber.class);
 
     @Autowired

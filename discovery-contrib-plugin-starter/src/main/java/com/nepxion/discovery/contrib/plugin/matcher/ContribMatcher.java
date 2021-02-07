@@ -1,24 +1,15 @@
 package com.nepxion.discovery.contrib.plugin.matcher;
 
-/**
- * <p>Title: Nepxion Discovery</p>
- * <p>Description: Nepxion Discovery</p>
- * <p>Copyright: Copyright (c) 2017-2050</p>
- * <p>Company: Nepxion</p>
- * @author Haojun Ren
- * @version 1.0
- */
-
-import java.util.List;
-
-import org.apache.commons.collections4.CollectionUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.nepxion.discovery.common.util.StringUtil;
 import com.nepxion.discovery.plugin.framework.adapter.PluginAdapter;
 import com.nepxion.discovery.plugin.strategy.matcher.DiscoveryMatcherStrategy;
+import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 public class ContribMatcher {
+
     @Autowired
     protected DiscoveryMatcherStrategy discoveryMatcherStrategy;
 
