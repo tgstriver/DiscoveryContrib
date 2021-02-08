@@ -50,25 +50,28 @@ public class ContribSubscriber {
         String serviceId = pluginAdapter.getServiceId();
         List<ParameterServiceEntity> parameterServiceEntityList = parameterServiceMap.get(serviceId);
 
-        Map<String, String> keyMap = new HashMap<String, String>();
+        Map<String, String> keyMap = new HashMap<>();
         for (ParameterServiceEntity parameterServiceEntity : parameterServiceEntityList) {
             Map<String, String> parameterMap = parameterServiceEntity.getParameterMap();
 
             String tagKey = parameterMap.get(ContribConstant.TAG_KEY);
             if (StringUtils.isEmpty(tagKey)) {
-                throw new DiscoveryException("Tag key can be null or empty");
+                throw new DiscoveryException("Tag key can not be null or empty");
             }
+
             String tagValue = parameterMap.get(ContribConstant.TAG_VALUE);
             if (StringUtils.isEmpty(tagValue)) {
-                throw new DiscoveryException("Tag value can be null or empty");
+                throw new DiscoveryException("Tag value can not be null or empty");
             }
+
             String key = parameterMap.get(ContribConstant.KEY);
             if (StringUtils.isEmpty(key)) {
-                throw new DiscoveryException("Key can be null or empty");
+                throw new DiscoveryException("Key can not be null or empty");
             }
+
             String value = parameterMap.get(ContribConstant.VALUE);
             if (StringUtils.isEmpty(value)) {
-                throw new DiscoveryException("Value can be null or empty");
+                throw new DiscoveryException("Value can not be null or empty");
             }
 
             // 不允许同时从多个维度进行对指定服务的指定组件进行灰度发布
@@ -100,23 +103,23 @@ public class ContribSubscriber {
             // <service service-name="discovery-guide-service-a" tag-key="region" tag-value="qa" key="RocketMQ" value="queue2"/>            
             if (StringUtils.equals(tagKey, ContribConstant.VERSION)) {
                 if (contribMatcher.match(tagValue, pluginAdapter.getVersion())) {
-                    process(key, value);
+                    this.process(key, value);
                 }
             } else if (StringUtils.equals(tagKey, ContribConstant.REGION)) {
                 if (contribMatcher.match(tagValue, pluginAdapter.getRegion())) {
-                    process(key, value);
+                    this.process(key, value);
                 }
             } else if (StringUtils.equals(tagKey, ContribConstant.ENVIRONMENT)) {
                 if (contribMatcher.match(tagValue, pluginAdapter.getEnvironment())) {
-                    process(key, value);
+                    this.process(key, value);
                 }
             } else if (StringUtils.equals(tagKey, ContribConstant.ZONE)) {
                 if (contribMatcher.match(tagValue, pluginAdapter.getZone())) {
-                    process(key, value);
+                    this.process(key, value);
                 }
             } else if (StringUtils.equals(tagKey, ContribConstant.ADDRESS)) {
                 if (contribMatcher.matchAddress(tagValue)) {
-                    process(key, value);
+                    this.process(key, value);
                 }
             }
         }
@@ -124,6 +127,7 @@ public class ContribSubscriber {
 
     public void process(String key, String value) {
         if (CollectionUtils.isEmpty(contribProcessorList)) {
+            LOG.info("----------contribProcessorList----------------" + contribProcessorList);
             return;
         }
 

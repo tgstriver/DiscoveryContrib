@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ContribCache {
 
-    private LoadingCache<String, String> loadingCache;
+    private final LoadingCache<String, String> loadingCache;
 
     public ContribCache() {
         loadingCache = Caffeine.newBuilder()

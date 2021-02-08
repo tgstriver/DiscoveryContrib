@@ -44,13 +44,17 @@ public class ContribMatcher {
             return false;
         }
 
-        if (addressList.contains(pluginAdapter.getHost() + ":" + pluginAdapter.getPort()) || addressList.contains(pluginAdapter.getHost()) || addressList.contains(String.valueOf(pluginAdapter.getPort()))) {
+        if (addressList.contains(pluginAdapter.getHost() + ":" + pluginAdapter.getPort())
+                || addressList.contains(pluginAdapter.getHost())
+                || addressList.contains(String.valueOf(pluginAdapter.getPort()))) {
             return true;
         }
 
         // 通配符匹配。前者是通配表达式，后者是具体值
         for (String addressPattern : addressList) {
-            if (discoveryMatcherStrategy.match(addressPattern, pluginAdapter.getHost() + ":" + pluginAdapter.getPort()) || discoveryMatcherStrategy.match(addressPattern, pluginAdapter.getHost()) || discoveryMatcherStrategy.match(addressPattern, String.valueOf(pluginAdapter.getPort()))) {
+            if (discoveryMatcherStrategy.match(addressPattern, pluginAdapter.getHost() + ":" + pluginAdapter.getPort())
+                    || discoveryMatcherStrategy.match(addressPattern, pluginAdapter.getHost())
+                    || discoveryMatcherStrategy.match(addressPattern, String.valueOf(pluginAdapter.getPort()))) {
                 return true;
             }
         }
